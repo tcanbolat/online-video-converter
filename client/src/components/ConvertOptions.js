@@ -15,14 +15,15 @@ const flexContainer = {
 
 export default function ConvertOptions(props) {
   return (
-    <Grid spacing={5}>
+    <Grid>
+      <br/><br/>
       <FormControl component="fieldset">
         <FormLabel component="legend">Format Options</FormLabel>
         <RadioGroup
           style={flexContainer}
           aria-label="Format Options"
           // value={props.formatvalue}
-          onChange={props.handleChange}
+          onClick={props.handleChange}
         >
           <FormControlLabel value="mp4" control={<Radio />} label="mp4" />
           <FormControlLabel value="flv" control={<Radio />} label="flv" />

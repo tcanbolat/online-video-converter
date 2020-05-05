@@ -7,6 +7,7 @@ export default function VideoUpload(props) {
     <div>
       <Grid>
         <Button
+          onClick={props.uploadHandler}
           style={{ width: "50%", margin: 20 }}
           disabled={props.button}
           variant="contained"
@@ -20,7 +21,7 @@ export default function VideoUpload(props) {
         <TextField
           disabled
           variant="outlined"
-          defaultValue={props.uploadedfile}
+          value={props.uploadedfile}
         />
       </Grid>
     </div>

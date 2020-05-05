@@ -16,7 +16,12 @@ class App extends React.Component {
     };
   }
 
+  uploadHandler = () => {
+    this.setState({uploadedfile: "uploading...", button: true});
+  }
+
   handleChange = event => {
+    event.preventDefault();
     const value = event.target.value;
     this.setState({
       formatvalue: value,
@@ -34,6 +39,7 @@ class App extends React.Component {
           <VideoUpload
             button={this.state.button}
             uploadedfile={this.state.uploadedfile}
+            uploadHandler={this.uploadHandler}
           />
           <ConvertOptions 
           formatvalue={this.state.formatvalue}
