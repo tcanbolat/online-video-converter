@@ -3,6 +3,7 @@ import "./App.css";
 import AppBar from "./components/AppBar";
 import { Container } from "@material-ui/core";
 import VideoUpload from "./components/VideoUpload";
+import ConvertOptions from "./components/ConvertOptions";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,9 +11,19 @@ class App extends React.Component {
     this.state = {
       date: new Date().toLocaleString(),
       button: false,
-      uploadedfile: ""
+      uploadedfile: "",
+      formatvalue: "",
     };
   }
+
+  handleChange = event => {
+    const value = event.target.value;
+    this.setState({
+      formatvalue: value,
+    })
+    console.log(value);
+  };
+
 
   render() {
     return (
@@ -20,15 +31,18 @@ class App extends React.Component {
         <AppBar />
         <Container align="center" maxWidth="lg">
           <h2>hello it is, {this.state.date}</h2>
-          <VideoUpload button={this.state.button} uploadedfile={this.state.uploadedfile}/>
+          <VideoUpload
+            button={this.state.button}
+            uploadedfile={this.state.uploadedfile}
+          />
+          <ConvertOptions 
+          formatvalue={this.state.formatvalue}
+          handleChange={this.handleChange}
+          />
         </Container>
       </div>
     );
   }
 }
-
-// function App() {
-
-// }
 
 export default App;
