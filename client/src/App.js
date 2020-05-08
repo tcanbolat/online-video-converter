@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
 import AppBar from "./components/AppBar";
-import { Container } from "@material-ui/core";
+import { Container, Divider, Grid } from "@material-ui/core";
 import VideoUpload from "./components/VideoUpload";
 import ConvertOptions from "./components/ConvertOptions";
+import ConvertButton from "./components/ConvertButton";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,24 +14,32 @@ class App extends React.Component {
       button: false,
       uploadedfile: "",
       formatvalue: "",
+      convertbutton: true,
     };
   }
 
   uploadHandler = () => {
-    this.setState({uploadedfile: "uploading...", button: true});
-  }
+    this.setState({ uploadedfile: "uploading...", button: true });
+  };
 
-  handleChange = event => {
+  changeHandler = (event) => {
     event.preventDefault();
     const value = event.target.value;
     this.setState({
       formatvalue: value,
-    })
-    console.log(value);
+    });
+    if (this.state.button === true && this.state.formatvalue != "") {
+      this.setState({convertbutton: false})
+    }
   };
 
-
   render() {
+    const style = {
+      divider: {
+        margin: 20,
+        padding: 5,
+      },
+    };
     return (
       <div className="App">
         <AppBar />
@@ -41,10 +50,17 @@ class App extends React.Component {
             uploadedfile={this.state.uploadedfile}
             uploadHandler={this.uploadHandler}
           />
-          <ConvertOptions 
-          formatvalue={this.state.formatvalue}
-          handleChange={this.handleChange}
+          <Grid item xs={6}>
+            <Divider style={style.divider} variant="middle" />
+          </Grid>
+          <ConvertOptions
+            formatvalue={this.state.formatvalue}
+            changeHandler={this.changeHandler}
           />
+          <Grid item xs={6}>
+            <Divider style={style.divider} variant="middle" />
+          </Grid>
+          <ConvertButton convertbutton={this.state.convertbutton} />
         </Container>
       </div>
     );

@@ -8,7 +8,7 @@ export default function VideoUpload(props) {
       <Grid>
         <Button
           onClick={props.uploadHandler}
-          style={{ width: "50%", margin: 20 }}
+          style={{ width: "20%", margin: 20 }}
           disabled={props.button}
           variant="contained"
           color="primary"

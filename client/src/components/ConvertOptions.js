@@ -23,7 +23,7 @@ export default function ConvertOptions(props) {
           style={flexContainer}
           aria-label="Format Options"
           // value={props.formatvalue}
-          onClick={props.handleChange}
+          onClick={props.changeHandler}
         >
           <FormControlLabel value="mp4" control={<Radio />} label="mp4" />
           <FormControlLabel value="flv" control={<Radio />} label="flv" />
