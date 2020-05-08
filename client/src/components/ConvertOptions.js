@@ -21,7 +21,7 @@ export default function ConvertOptions(props) {
         <RadioGroup
           style={flexContainer}
           aria-label="Format Options"
-          // value={props.formatvalue}
+          value={props.formatvalue}
           onClick={props.changeHandler}
         >
           <FormControlLabel value="mp4" control={<Radio />} label="mp4" />

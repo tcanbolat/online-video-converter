@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import AppBar from "./components/AppBar";
-import { Container, Divider, Grid, TableFooter } from "@material-ui/core";
+import { Container, Divider, Grid } from "@material-ui/core";
 import VideoUpload from "./components/VideoUpload";
 import ConvertOptions from "./components/ConvertOptions";
 import ConvertButton from "./components/ConvertButton";
@@ -14,7 +14,6 @@ class App extends React.Component {
       button: false,
       uploadedfile: "",
       formatvalue: "",
-      convertbutton: true,
     };
   }
 
@@ -23,14 +22,10 @@ class App extends React.Component {
   };
 
   changeHandler = (event) => {
-    event.preventDefault();
     const value = event.target.value;
     this.setState({
       formatvalue: value,
     });
-    if (this.state.button === true && this.state.formatvalue != "") {
-      this.setState({ convertbutton: false });
-    }
   };
 
   render() {
@@ -43,6 +38,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <AppBar />
+        <Container align="center">
+          <Grid item xs={6}>
+            <Divider style={style.divider} variant="middle" />
+          </Grid>
+        </Container>
         <Container align="center" maxWidth="lg">
           <VideoUpload
             button={this.state.button}
@@ -59,7 +59,11 @@ class App extends React.Component {
           <Grid item xs={6}>
             <Divider style={style.divider} variant="middle" />
           </Grid>
-          <ConvertButton convertbutton={this.state.convertbutton} />
+          <ConvertButton
+            formatvalue={this.state.formatvalue}
+            uploadbtn={this.state.button}
+            convertbutton={this.state.convertbutton}
+          />
         </Container>
         <Footer />
       </div>

@@ -19,7 +19,7 @@ export default function ButtonAppBar() {
 
   return (
     <div align="center">
-      <Grid xs={6} className={classes.root}>
+      <Grid item xs={6} className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h3" className={classes.title}>
