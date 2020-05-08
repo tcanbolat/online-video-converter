@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
 import AppBar from "./components/AppBar";
-import { Container, Divider, Grid } from "@material-ui/core";
+import { Container, Divider, Grid, TableFooter } from "@material-ui/core";
 import VideoUpload from "./components/VideoUpload";
 import ConvertOptions from "./components/ConvertOptions";
 import ConvertButton from "./components/ConvertButton";
+import Footer from "./components/Footer";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date().toLocaleString(),
       button: false,
       uploadedfile: "",
       formatvalue: "",
@@ -29,7 +29,7 @@ class App extends React.Component {
       formatvalue: value,
     });
     if (this.state.button === true && this.state.formatvalue != "") {
-      this.setState({convertbutton: false})
+      this.setState({ convertbutton: false });
     }
   };
 
@@ -44,7 +44,6 @@ class App extends React.Component {
       <div className="App">
         <AppBar />
         <Container align="center" maxWidth="lg">
-          <h2>hello it is, {this.state.date}</h2>
           <VideoUpload
             button={this.state.button}
             uploadedfile={this.state.uploadedfile}
@@ -62,6 +61,7 @@ class App extends React.Component {
           </Grid>
           <ConvertButton convertbutton={this.state.convertbutton} />
         </Container>
+        <Footer />
       </div>
     );
   }

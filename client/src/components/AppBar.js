@@ -1,14 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Toolbar, Typography, AppBar} from "@material-ui/core";
+import { Toolbar, Typography, AppBar, Grid} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginTop: 30,
     flexGrow: 1,
-    opacity: 0.8,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
+    opacity: 0.9,
   },
   title: {
     flexGrow: 1,
@@ -20,14 +18,16 @@ export default function ButtonAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar align="center">
-          <Typography variant="h3" className={classes.title}>
-            Video Conversion Tool
-          </Typography>
-        </Toolbar>
-      </AppBar>
+    <div align="center">
+      <Grid xs={6} className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h3" className={classes.title}>
+              Video Conversion Tool
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Grid>
     </div>
   );
 }

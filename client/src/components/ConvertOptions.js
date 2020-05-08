@@ -16,7 +16,6 @@ const flexContainer = {
 export default function ConvertOptions(props) {
   return (
     <Grid>
-      <br/><br/>
       <FormControl component="fieldset">
         <FormLabel component="legend">Format Options</FormLabel>
         <RadioGroup
