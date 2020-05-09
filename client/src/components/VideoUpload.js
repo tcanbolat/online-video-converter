@@ -1,28 +1,18 @@
 import React from "react";
-import { Button, TextField, Grid } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import PersonalVideoIcon from "@material-ui/icons/PersonalVideo";
 
 export default function VideoUpload(props) {
   return (
     <div>
       <Grid>
-        <Button
-          onClick={props.uploadHandler}
-          style={{ width: "20%", margin: 20 }}
-          disabled={props.button}
-          variant="contained"
-          color="primary"
-          startIcon={<PersonalVideoIcon />}
-        >
-          Upload a Video
-        </Button>
+        <input type="file" name="file" id="file" className="inputfile" />
+        <label onClick={props.uploadHandler} htmlFor="file">
+          <PersonalVideoIcon /> Upload a Video
+        </label>
       </Grid>
       <Grid>
-        <TextField
-          disabled
-          variant="outlined"
-          value={props.uploadedfile}
-        />
+        <TextField disabled variant="outlined" value={props.uploadedfile} />
       </Grid>
     </div>
   );
