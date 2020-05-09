@@ -6,6 +6,8 @@ import VideoUpload from "./components/VideoUpload";
 import ConvertOptions from "./components/ConvertOptions";
 import ConvertButton from "./components/ConvertButton";
 import Footer from "./components/Footer";
+import API from "./utils/API";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +18,18 @@ class App extends React.Component {
       formatvalue: "",
     };
   }
+
+  convertHandler = () => {
+    console.log("convert button clicked!");
+    API.convertFile(this.state)
+    .then(res =>
+      console.log(res)
+    )
+    .catch(() =>
+      console.log()
+    );
+};
+  
 
   uploadHandler = (event) => {
     let file = event.target.value; 
@@ -62,6 +76,7 @@ class App extends React.Component {
             <Divider style={style.divider} variant="middle" />
           </Grid>
           <ConvertButton
+            convert={this.convertHandler}
             formatvalue={this.state.formatvalue}
             uploadbtn={this.state.button}
             convertbutton={this.state.convertbutton}

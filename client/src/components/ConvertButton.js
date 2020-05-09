@@ -13,6 +13,7 @@ if (props.formatvalue !== "" && props.uploadbtn === true) {
   return (
     <div>
       <Button
+        onClick={props.convert}
         style={{ width: "20%", margin: 20 }}
         disabled={button}
         variant="contained"

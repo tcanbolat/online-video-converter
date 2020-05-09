@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-  uploadFile: (q) => {
-    return axios.get("/upload", );
+  convertFile: (videoinfo) => {
+    return axios.post("/convert", (videoinfo));
   },
 
 };
