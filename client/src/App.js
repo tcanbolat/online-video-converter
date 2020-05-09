@@ -17,8 +17,10 @@ class App extends React.Component {
     };
   }
 
-  uploadHandler = () => {
-    this.setState({ uploadedfile: "uploading...", button: true });
+  uploadHandler = (event) => {
+    let file = event.target.value; 
+    file = file.replace(/.*[\/\\]/, ''); 
+    this.setState({ uploadedfile: file, button: true });
   };
 
   changeHandler = (event) => {

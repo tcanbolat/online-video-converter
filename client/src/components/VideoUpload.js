@@ -6,8 +6,8 @@ export default function VideoUpload(props) {
   return (
     <div>
       <Grid>
-        <input type="file" name="file" id="file" className="inputfile" />
-        <label onClick={props.uploadHandler} htmlFor="file">
+        <input type="file" name="file" id="file" className="inputfile" onChange={props.uploadHandler}/>
+        <label htmlFor="file">
           <PersonalVideoIcon /> Upload a Video
         </label>
       </Grid>
