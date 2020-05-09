@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  convertFile: (videoinfo) => {
+  convertFile: function (videoinfo) {
     return axios.post("/convert", (videoinfo));
   },
 

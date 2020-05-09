@@ -12,7 +12,7 @@ export default function VideoUpload(props) {
         </label>
       </Grid>
       <Grid>
-        <TextField disabled variant="outlined" value={props.uploadedfile} />
+        {/* <TextField disabled variant="outlined" value={props.uploadedfile.name} /> */}
       </Grid>
     </div>
   );

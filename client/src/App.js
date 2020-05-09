@@ -13,15 +13,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      button: false,
-      uploadedfile: "",
+      button: true,
+      uploadedfile: null,
       formatvalue: "",
     };
   }
 
   convertHandler = () => {
     console.log("convert button clicked!");
-    API.convertFile(this.state)
+    const file = this.state.uploadedfile;
+    const data = new FormData();
+    data.append("file", file);
+    data.append("data", this.state.formatvalue);
+    API.convertFile(data)
     .then(res =>
       console.log(res)
     )
@@ -32,9 +36,9 @@ class App extends React.Component {
   
 
   uploadHandler = (event) => {
-    let file = event.target.value; 
-    file = file.replace(/.*[\/\\]/, ''); 
-    this.setState({ uploadedfile: file, button: true });
+    console.log(event.target.files[0]);
+    let file = event.target.files[0]; 
+    this.setState({ uploadedfile: file });
   };
 
   changeHandler = (event) => {
