@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 app.use(
     expressFileUpload({
       useTempFiles: true,
-      tempFileDir: "/tmp/",
+      tempFileDir: "./tmp/",
     })
   );
 
