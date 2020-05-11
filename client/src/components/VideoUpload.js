@@ -10,10 +10,11 @@ export default function VideoUpload(props) {
         <label htmlFor="file">
           <PersonalVideoIcon /> Upload a Video
         </label>
-      </Grid>
-      <Grid>
-        {/* <TextField disabled variant="outlined" value={props.uploadedfile.name} /> */}
-      </Grid>
+       <Grid>
+       <p>{props.uploadedfile.name}</p>
+       </Grid>
+      </Grid> 
+   
     </div>
   );
 }

@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       button: true,
-      uploadedfile: null,
+      uploadedfile: "",
       formatvalue: "",
     };
   }
@@ -26,9 +26,19 @@ class App extends React.Component {
     data.append("file", file);
     data.append("data", this.state.formatvalue);
     API.convertFile(data)
-    .then(res =>
-      console.log(res)
-    )
+    .then(res => {
+      if (typeof window.navigator.msSaveBlob === 'function') {
+        // If it is IE that support download blob directly.
+        window.navigator.msSaveBlob(res.data);
+      } else {
+        var blob = res.data ;
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "output." + this.state.formatvalue;
+        document.body.appendChild(link);
+        link.click();
+      }
+    })
     .catch(() =>
       console.log()
     );

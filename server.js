@@ -16,17 +16,20 @@ app.use(
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 
 // Add routes, both API and view
 app.use(routes);
 
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// Server static assets if we're in production
+if (process.env.NODE_ENV === "production") {
+	// Exprees will serve up production assets
+	app.use(express.static(path.join(__dirname, "client/build")));
+
+	// Express serve up index.html file if it doesn't recognize route
+	app.get("*", (req, res) => {
+		res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
+}
 
 // Start the API server
 app.listen(PORT, () =>
