@@ -8,7 +8,6 @@ import ConvertButton from "./components/ConvertButton";
 import Footer from "./components/Footer";
 import API from "./utils/API";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,42 +25,39 @@ class App extends React.Component {
     data.append("file", file);
     data.append("data", this.state.formatvalue);
     API.convertFile(data)
-    .then(res => {
-      if (typeof window.navigator.msSaveBlob === 'function') {
-        // If it is IE that support download blob directly.
-        window.navigator.msSaveBlob(res.data);
-      } else {
-        var blob = res.data; //video returned as blob object, defined in utils/API.js
-        var link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = "output." + this.state.formatvalue;
-        document.body.appendChild(link);
-        link.click();
-      }
-    })
-    .catch((err) =>
-      console.log(err)
-    );
-};
+      .then((res) => {
+        if (typeof window.navigator.msSaveBlob === "function") {
+          // If it is IE that support download blob directly.
+          window.navigator.msSaveBlob(res.data);
+        } else {
+          var blob = res.data; //video returned as blob object, defined in utils/API.js
+          var link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = "output." + this.state.formatvalue;
+          document.body.appendChild(link);
+          link.click();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   uploadHandler = (event) => {
     event.preventDefault();
     if (event.target.files[0] === undefined) {
       return null;
-    } else if( event.target.files[0].size >= 524288000) {
+    } else if (event.target.files[0].size >= 524288000) {
       alert("file size cannot exceed 500mb");
-    }
-    else {
-      let file = event.target.files[0]; 
+    } else {
+      let file = event.target.files[0];
       this.setState({ uploadedfile: file, uploadbutton: true });
     }
   };
 
-  deleteUploadHandler = e => {
+  deleteUploadHandler = (e) => {
     console.log(e.target);
     e.preventDefault();
-    this.setState({uploadedfile: null, uploadbutton: false });
-  }
+    this.setState({ uploadedfile: null, uploadbutton: false });
+  };
 
   changeHandler = (event) => {
     const value = event.target.value;

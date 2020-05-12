@@ -8,9 +8,9 @@ const fs = require("fs");
 // fluent-ffmpeg only allows node to connect to ffmpeg on your machine and run commands
 // To use in production, you need to install an ffmpeg buildpack in the production server 
 
-ffmpeg.setFfmpegPath("C:/ffmpeg/bin/ffmpeg.exe");
-ffmpeg.setFfprobePath("C:/ffmpeg/bin");
-ffmpeg.setFlvtoolPath("C:/ffmpegflvtool");
+// ffmpeg.setFfmpegPath("C:/ffmpeg/bin/ffmpeg.exe");
+// ffmpeg.setFfprobePath("C:/ffmpeg/bin");
+// ffmpeg.setFlvtoolPath("C:/ffmpegflvtool");
 // you can remove these sets once ready for production
 // ------------------------------------------------------------------------------------
 console.log("ffmpeg:");
