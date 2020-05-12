@@ -15,11 +15,14 @@ class App extends React.Component {
       uploadbutton: false,
       uploadedfile: null,
       formatvalue: "",
+      convertbutton: true,
+      convertbuttontext: "Convert Video",
     };
   }
 
   convertHandler = () => {
     console.log("convert button clicked!");
+    this.setState({ convertbuttontext: "Converting...", uploadbutton: false });
     const file = this.state.uploadedfile;
     const data = new FormData();
     data.append("file", file);
@@ -30,12 +33,17 @@ class App extends React.Component {
           // If it is IE that support download blob directly.
           window.navigator.msSaveBlob(res.data);
         } else {
-          var blob = res.data; //video returned as blob object, defined in utils/API.js
-          var link = document.createElement("a");
+          const blob = res.data; //video returned as blob object, defined in utils/API.js
+          const link = document.createElement("a");
           link.href = window.URL.createObjectURL(blob);
           link.download = "output." + this.state.formatvalue;
           document.body.appendChild(link);
           link.click();
+          this.setState({
+            uploadedfile: null,
+            convertbuttontext: "Convert Video",
+            formatvalue: "",
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -65,7 +73,6 @@ class App extends React.Component {
       formatvalue: value,
     });
   };
-
   render() {
     const style = {
       divider: {
@@ -102,7 +109,8 @@ class App extends React.Component {
             convert={this.convertHandler}
             formatvalue={this.state.formatvalue}
             uploadbtn={this.state.uploadbutton}
-            convertbutton={this.state.convertbutton}
+            convertbtn={this.state.convertbutton}
+            converttext={this.state.convertbuttontext}
           />
         </Container>
         <Footer />

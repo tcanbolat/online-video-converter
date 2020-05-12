@@ -3,13 +3,10 @@ import { Button } from "@material-ui/core";
 import SwitchVideoIcon from '@material-ui/icons/SwitchVideo';
 
 export default function ConvertButton(props) {
-
-let button = true;
-
+let button = props.convertbtn;
 if (props.formatvalue !== "" && props.uploadbtn === true) {
   button = false;
 }
-
   return (
     <div>
       <Button
@@ -20,9 +17,8 @@ if (props.formatvalue !== "" && props.uploadbtn === true) {
         color="primary"
         startIcon={<SwitchVideoIcon/>}
       >
-        Convert Video
+        {props.converttext}
       </Button>
-  <div>options: {props.formatvalue}</div>
     </div>
   );
 }
