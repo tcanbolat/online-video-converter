@@ -13,8 +13,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      button: true,
-      uploadedfile: "",
+      uploadbutton: false,
+      uploadedfile: null,
       formatvalue: "",
     };
   }
@@ -31,7 +31,7 @@ class App extends React.Component {
         // If it is IE that support download blob directly.
         window.navigator.msSaveBlob(res.data);
       } else {
-        var blob = res.data ;
+        var blob = res.data; //video returned as blob object, defined in utils/API.js
         var link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.download = "output." + this.state.formatvalue;
@@ -39,17 +39,29 @@ class App extends React.Component {
         link.click();
       }
     })
-    .catch(() =>
-      console.log()
+    .catch((err) =>
+      console.log(err)
     );
 };
-  
 
   uploadHandler = (event) => {
-    console.log(event.target.files[0]);
-    let file = event.target.files[0]; 
-    this.setState({ uploadedfile: file });
+    event.preventDefault();
+    if (event.target.files[0] === undefined) {
+      return null;
+    } else if( event.target.files[0].size >= 524288000) {
+      alert("file size cannot exceed 500mb");
+    }
+    else {
+      let file = event.target.files[0]; 
+      this.setState({ uploadedfile: file, uploadbutton: true });
+    }
   };
+
+  deleteUploadHandler = e => {
+    console.log(e.target);
+    e.preventDefault();
+    this.setState({uploadedfile: null, uploadbutton: false });
+  }
 
   changeHandler = (event) => {
     const value = event.target.value;
@@ -75,9 +87,10 @@ class App extends React.Component {
         </Container>
         <Container align="center" maxWidth="lg">
           <VideoUpload
-            button={this.state.button}
+            uploadbutton={this.state.uploadbutton}
             uploadedfile={this.state.uploadedfile}
             uploadHandler={this.uploadHandler}
+            deleteUploadHandler={this.deleteUploadHandler}
           />
           <Grid item xs={6}>
             <Divider style={style.divider} variant="middle" />
@@ -92,7 +105,7 @@ class App extends React.Component {
           <ConvertButton
             convert={this.convertHandler}
             formatvalue={this.state.formatvalue}
-            uploadbtn={this.state.button}
+            uploadbtn={this.state.uploadbutton}
             convertbutton={this.state.convertbutton}
           />
         </Container>
