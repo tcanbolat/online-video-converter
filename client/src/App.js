@@ -55,7 +55,7 @@ class App extends React.Component {
     if (event.target.files[0] === undefined) {
       return null;
     } else if (event.target.files[0].size >= 157286400) {
-      alert("file size cannot exceed 500mb");
+      alert("file size cannot exceed 150mb");
     } else {
       let file = event.target.files[0];
       this.setState({ uploadedfile: file, uploadbutton: true });
