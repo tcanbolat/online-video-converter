@@ -5,7 +5,7 @@ React built app that can convert video files to other formats. example: video.AV
 # when running locally make sure to set the local ffmpeg path in the controller/convert.js file.
 # test a working version online here: https://reactjs-online-video-converter.herokuapp.com/
 # basic funtionality in place. no loader set up, so give the app a minute or two after clicking convert. once finished; converted file will download automatically or console log an error.
-# upload size limit is set to 500mb on client side.
+# upload size limit is set to 150mb on client side due to heroku server limits.
 
 # Todo's:
  - set up a loader while waiting for conversion.
