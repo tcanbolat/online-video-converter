@@ -24,7 +24,7 @@
   "homepage": "https://github.com/tcanbolat/online-video-converter#readme",
   "dependencies": {
     "dot-env": "0.0.1",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-fileupload": "^1.1.7-alpha.3",
     "fluent-ffmpeg": "^2.1.2",
     "if-env": "^1.0.4"
